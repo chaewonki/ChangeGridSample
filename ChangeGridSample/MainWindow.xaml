@@ -1,0 +1,80 @@
+﻿<Window x:Class="ChangeGridSample.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ChangeGridSample"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="800" Width="500">
+    <Grid x:Name="listGrid">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"
+                           MaxHeight="600"
+                           MinHeight="200"/>
+
+            <RowDefinition Height="30"/>
+
+            <RowDefinition Height="*"
+                           MaxHeight="600"
+                           MinHeight="200"/>
+        </Grid.RowDefinitions>
+
+        <Grid x:Name="table1Grid"
+              Grid.Row="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Row="0"
+                       Text="Table1"/>
+            <DataGrid x:Name="table1DataGrid"
+                      Grid.Row="1"
+                      Background="Blue"/>
+        </Grid>
+
+        <GridSplitter Grid.Row="1"
+                      HorizontalAlignment="Stretch"
+                      Background="White"/>
+        
+        <Path Grid.Row="1"
+              HorizontalAlignment="Center"
+              Fill="Black"
+              Data="M17.45,17.55L12,23L6.55,17.55L7.96,16.14L11,19.17V4.83L7.96,7.86L6.55,6.45L12,1L17.45,6.45L16.04,7.86L13,4.83V19.17L16.04,16.14L17.45,17.55Z"/>
+        
+        <StackPanel Grid.Row="1"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Right">
+            <Button Width="50"
+                    Content="up"
+                    Command="{Binding UpCommand}"
+                    CommandParameter="{Binding ElementName=listGrid}"/>
+            <Button Width="50"
+                    Content="-"
+                    Command="{Binding MakeSameHeightCommand}"
+                    CommandParameter="{Binding ElementName=listGrid}"/>
+            <Button Width="50"
+                    Content="down"
+                    Command="{Binding DownCommand}"
+                    CommandParameter="{Binding ElementName=listGrid}"/>
+            <Button Width="50"
+                    Content="switch"
+                    Command="{Binding SwitchGridCommand}"
+                    CommandParameter="{Binding ElementName=listGrid}"/>
+        </StackPanel>
+
+        <Grid x:Name="table2Grid"
+              Grid.Row="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Row="0"
+                       Text="Table2"/>
+            <DataGrid x:Name="table2DataGrid"
+                      Grid.Row="1"
+                      Background="Red"/>
+        </Grid>
+    </Grid>
+</Window>
